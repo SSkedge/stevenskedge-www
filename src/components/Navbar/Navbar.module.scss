@@ -1,0 +1,131 @@
+@use "../../styles/_variables.scss" as variables;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 7%;
+  background-color: variables.$background-gray;
+}
+
+.barsButton {
+  display: none;
+}
+
+.logo {
+  height: 10%;
+  width: 10%;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.links a {
+  text-decoration: none;
+  color: variables.$white;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.links a::after {
+  position: absolute;
+  content: "";
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  // height: 2px;
+  background-color: variables.$electric-green;
+  transition: all 0.8s ease;
+}
+
+.links a:active {
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: variables.$electric-green;
+}
+
+.links a:hover {
+  color: variables.$white;
+  z-index: 1;
+  transition: all 0.8s ease;
+}
+
+.links a:hover::after {
+  height: 80%;
+  z-index: -1;
+}
+
+@media only screen and (max-width: variables.$breakpoint-desktop) {
+  .navbar {
+    padding: 25px 3%;
+  }
+
+  .links a {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: variables.$breakpoint-tablet) {
+  .links {
+    display: none;
+  }
+
+  .links.active {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: variables.$background-gray;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .barsButton {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 50px;
+    height: 30px;
+    z-index: 4;
+    position: relative;
+    transition: ease-in-out .3s all;
+  }
+
+  .barsButton span {
+    background-color: variables.$white;
+    width: 100%;
+    height: 2px;
+    transition: all .3s ease;
+  }
+
+  .barsButton.active {
+    margin-top: 15px;
+  }
+
+  .barsButton.active span:nth-child(2) {
+    display: none;
+  }
+
+  .barsButton.active span:nth-child(1) {
+    position: absolute;
+    transform: rotate(-45deg);
+  }
+
+  .barsButton.active span:nth-child(3) {
+    position: absolute;
+    transform: rotate(45deg);
+  }
+}
